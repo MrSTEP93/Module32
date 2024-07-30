@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Module35.Go.Middlewares;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,8 @@ namespace Module35.Go
             }
 
             app.UseRouting();
-
+            app.UseStaticFiles();
+            /*
             //Добавляем компонент для логирования запросов с использованием метода Use.
             app.Use(async (context, next) =>
             {
@@ -39,7 +41,12 @@ namespace Module35.Go
                 Console.WriteLine($"[{DateTime.Now}]: New request to http://{context.Request.Host.Value + context.Request.Path}");
                 await next.Invoke();
             });
+            */
 
+            // Подключаем логирование с использованием ПО промежуточного слоя
+            app.UseMiddleware<ConsoleLoggingMiddleware>();
+            app.UseMiddleware<FileLoggingMiddleware>();
+            
             //Добавляем компонент с настройкой маршрутов для главной страницы
             app.UseEndpoints(endpoints =>
             {

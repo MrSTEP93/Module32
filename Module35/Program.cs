@@ -21,6 +21,8 @@ namespace Module35.Go
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    // Переопределяем путь до статических файлов по умолчанию
+                    //webBuilder.UseWebRoot("Views");
                 });
     }
 }
