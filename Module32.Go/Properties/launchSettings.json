@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Module35": {
+    "Module32.Go": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

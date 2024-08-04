@@ -33,15 +33,6 @@ namespace Module32.Go
 
             app.UseRouting();
             app.UseStaticFiles();
-            /*
-            //Добавляем компонент для логирования запросов с использованием метода Use.
-            app.Use(async (context, next) =>
-            {
-                // Для логирования данных о запросе используем свойства объекта HttpContext
-                Console.WriteLine($"[{DateTime.Now}]: New request to http://{context.Request.Host.Value + context.Request.Path}");
-                await next.Invoke();
-            });
-            */
 
             // Подключаем логирование с использованием ПО промежуточного слоя
             app.UseMiddleware<ConsoleLoggingMiddleware>();
@@ -62,6 +53,8 @@ namespace Module32.Go
 
             app.Run(async (context) =>
             {
+                //int zero = 0;
+                //int result = 4 / zero;
                 await context.Response.WriteAsync($"Welcome to the {env.ApplicationName}! \n You has opened incorrect page =( ");
             });
         }
