@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Module35.Go
+namespace Module32.Go
 {
     public class Startup
     {
