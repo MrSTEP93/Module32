@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Module32.MVCStart.Middleware;
 using Module32.MVCStart.Models.Db;
 using Module32.MVCStart.Models.Repositories;
 using Module35.Go.Middlewares;
@@ -32,6 +33,7 @@ namespace Module32.MVCStart
 
             // регистрация сервиса репозитория для взаимодействия с базой данных
             services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<ILoggingRepository, LoggingRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +54,7 @@ namespace Module32.MVCStart
             app.UseAuthorization();
 
             app.UseMiddleware<ConsoleLoggingMiddleware>();
-            app.UseMiddleware<FileLoggingMiddleware>();
+            app.UseMiddleware<LoggingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
