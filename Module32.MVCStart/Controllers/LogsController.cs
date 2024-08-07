@@ -14,7 +14,7 @@ namespace Module32.MVCStart.Controllers
 
         public IActionResult Index()
         {
-            var requests = _loggingRepo.GetRequests();
+            var requests = _loggingRepo.GetRequests().Result;
             return View(requests);
         }
     }

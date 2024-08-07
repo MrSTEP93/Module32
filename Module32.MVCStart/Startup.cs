@@ -28,12 +28,12 @@ namespace Module32.MVCStart
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
             services.AddControllersWithViews();
 
             // регистрация сервиса репозитория для взаимодействия с базой данных
-            services.AddScoped<IBlogRepository, BlogRepository>();
-            services.AddScoped<ILoggingRepository, LoggingRepository>();
+            services.AddTransient<IBlogRepository, BlogRepository>();
+            services.AddTransient<ILoggingRepository, LoggingRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,3 +65,9 @@ namespace Module32.MVCStart
         }
     }
 }
+
+/*
+ Здравствуйте! Задание 32.11.1, я совсем запутался в работе сервисов. Создал в программе отдельный репозиторий для работы с логированием в БД, 
+но никак не могу обратиться к нему в middleware. Когда я пытался получить экземпляр LoggingRepository в конструкторе LoggingMiddleware, приложение не запускалось (скрин 1),
+как бы я не менял время жизни 
+*/

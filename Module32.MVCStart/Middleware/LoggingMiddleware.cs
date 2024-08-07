@@ -11,13 +11,13 @@ namespace Module32.MVCStart.Middleware
         private readonly RequestDelegate _next;
         private readonly ILoggingRepository _loggingRepo;
 
-        public LoggingMiddleware(RequestDelegate next, LoggingRepository loggingRepository)
+        public LoggingMiddleware(RequestDelegate next)
         {
             _next = next;
-            _loggingRepo = loggingRepository;
+            //_loggingRepo = loggingRepository;
         }
 
-        public async Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context, ILoggingRepository loggingRepository)
         {
             
             Request request = new()
@@ -26,7 +26,8 @@ namespace Module32.MVCStart.Middleware
                 Url = $"http://{context.Request.Host.Value + context.Request.Path}",
                 Date = DateTime.Now
             };
-            await _loggingRepo.Log(request);
+
+            await loggingRepository.Log(request);
             await _next.Invoke(context);
         }
     }

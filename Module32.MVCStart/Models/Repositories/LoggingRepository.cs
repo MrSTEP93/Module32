@@ -27,7 +27,8 @@ namespace Module32.MVCStart.Models.Repositories
 
         public async Task<Request[]> GetRequests()
         {
-            return await _context.Requests.OrderBy(r => r.Date).ToArrayAsync();
+            return await _context.Requests.OrderByDescending(r => r.Date).ToArrayAsync();
         }
     }
 }
+
