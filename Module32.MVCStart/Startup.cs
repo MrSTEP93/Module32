@@ -54,7 +54,7 @@ namespace Module32.MVCStart
             app.UseAuthorization();
 
             app.UseMiddleware<ConsoleLoggingMiddleware>();
-            app.UseMiddleware<LoggingMiddleware>();
+            app.UseMiddleware<DBLoggingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

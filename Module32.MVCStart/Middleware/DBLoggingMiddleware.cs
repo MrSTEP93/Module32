@@ -6,12 +6,12 @@ using Module32.MVCStart.Models.Db;
 
 namespace Module32.MVCStart.Middleware
 {
-    public class LoggingMiddleware
+    public class DBLoggingMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILoggingRepository _loggingRepo;
 
-        public LoggingMiddleware(RequestDelegate next)
+        public DBLoggingMiddleware(RequestDelegate next)
         {
             _next = next;
             //_loggingRepo = loggingRepository;
